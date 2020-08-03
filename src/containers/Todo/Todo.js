@@ -54,10 +54,7 @@ class Todo extends Component {
 
     this.setState({search: event.target.value});
 
-    const searchRes = this
-      .state
-      .tasks
-      .filter((taskItem => taskItem.title.toString().toLowerCase().concat(' ', taskItem.description.toString().toLowerCase()).includes(event.target.value.toString().toLowerCase())))
+    const searchRes = this.doSmthWithTasks((taskItem => taskItem.title.toString().toLowerCase().concat(' ', taskItem.description.toString().toLowerCase()).includes(event.target.value.toString().toLowerCase())))
     console.log('Search', event.target.value);
 
     this.setState({searchRes: searchRes});
