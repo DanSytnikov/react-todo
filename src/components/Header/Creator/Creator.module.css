@@ -1,0 +1,81 @@
+.Creator{
+    display: block;
+    width: 25%;
+    min-width: 250px;
+    position: fixed;
+    top: 35%;
+    left: 35%;
+    background-color: rgba(255, 228, 196, 0.9);
+    border-radius: 5px;
+}
+
+.Creator.active {
+    display: block;
+    animation: fadeIn 0.4s;
+}
+
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+
+.CreatorForm h2{
+    text-align: center;
+    width: 100%;
+}
+
+.CreatorTitle, .CreatorDescription{
+    margin: auto;
+    box-sizing: border-box;
+    width: 90%;
+    margin-top: 20px;
+    display: block;
+    height: 40%;
+    overflow-y: auto;
+    resize: none;
+    font-size: 14px;
+    padding-left: 10px;
+    border-radius: 5px;
+}
+
+.CreatorDescription{
+    height: 120px;
+}
+
+
+
+.CreatorButtons{
+    display: flex;
+    width: 92%;
+    height: 28px;
+    margin: 20px 0 12px 10px;
+}
+
+.CreatorSubmitBtn{
+    font-size: 16px;
+    width: 65%;
+    border-radius: 16px;
+}
+
+.CreatorCancelBtn{
+    font-size: 14px;
+    width: 35%;
+    margin-left: 20px;
+    border-radius: 16px;
+    background-color: rgba(255, 100, 100, 0.9);
+}

@@ -1,0 +1,86 @@
+button:hover{
+    cursor: pointer;
+    box-shadow: inset 4px 2px 5px rgb(241, 252, 216);
+}
+
+.Task{
+    background-color: rgba(231, 123, 211, .8);
+    margin: 10px;
+    padding: 10px;
+    font-family: cursive;
+}
+
+.Task.done{
+    background-color: rgba(0, 255, 0, .3)
+}
+
+.DeleteBtn{
+    background-color: transparent;
+    border: none;
+    color: red;
+    padding: 4px 8px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius:50%;
+    float: right;
+}
+
+.TaskInfoEdit{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.TaskInfoEdit label{
+    margin: auto;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.EditTitle{
+    margin-left: 90px;
+    min-width: 400px;
+    height: 26px;
+    padding: 5px;
+    font-family: cursive;
+}
+
+.EditDescription{
+    resize: none;
+    min-width: 400px;
+    margin-left: 40px;
+    min-height: 100px;
+    padding: 5px;
+    font-family: cursive;
+}
+
+.EditButtons{
+    margin-top: 18px;
+    align-self: center;
+}
+
+.Task button:not(.DeleteBtn){
+    margin: 0 20px;
+    font-size: 18px;
+    border-radius: 8px;
+    color: seashell;
+    font-family: cursive;
+}
+
+.EditSave,  .DoneBtn{
+    background-color: seagreen;
+}
+
+.EditBtn{
+    background-color: darkgoldenrod;
+}
+
+.EditCancel{
+    background-color: brown;
+}
+
+
+.DeleteBtn:hover {
+    background-color: rgba(255,255,0,.5);
+  }
