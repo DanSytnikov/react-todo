@@ -6,6 +6,22 @@ class Task extends Component {
   constructor(props) {
     super(props);
     this.props = props;
+    this.key = `${this.props.title}__${this.props.timestamp}`;
+  }
+
+  onSave = (e) => {
+
+    e.preventDefault();
+    this
+      .props
+      .onSave(this.key);
+  }
+
+  handleEdit = (event) => {
+
+    this
+      .props
+      .inputHandler(this.key, event.target.name, event.target.value);
   }
 
   deleteBtnClasses = ['fa', 'fa-close', classes.DeleteBtn];
@@ -28,18 +44,18 @@ class Task extends Component {
             className={this
             .deleteBtnClasses
             .join(' ')}
-            onClick={this.props.onDelete}></button>
+            onClick={() => this.props.onDelete(this.key)}></button>
         </header>
         {this.props.isEdit
           ? <div className={classes.TaskEdit}>
-              <form className={classes.TaskInfoEdit} onSubmit={this.props.onSave}>
+              <form className={classes.TaskInfoEdit} onSubmit={this.onSave}>
                 <label >Title:
                   <input
                     name="editTitle"
                     className={classes.EditTitle}
                     type="text"
                     autoComplete="off"
-                    onChange={this.props.onEditInput}
+                    onChange={this.handleEdit}
                     value={this.props.editTitle}/>
                 </label>
                 <label>
@@ -48,13 +64,12 @@ class Task extends Component {
                     name="editDescription"
                     className={classes.EditDescription}
                     autoComplete="off"
-                    onChange={this.props.onEditInput}
-                    value={this.props.editDescription}
-                    />
+                    onChange={this.handleEdit}
+                    value={this.props.editDescription}/>
                 </label>
                 <div className={classes.EditButtons}>
                   <button className={classes.EditSave}>Save</button>
-                  <button type="button" className={classes.EditCancel} onClick={this.props.onEdit}>Cancel</button>
+                  <button type="button" className={classes.EditCancel} onClick={() => this.props.toggleEdit(this.key)}>Cancel</button>
                 </div>
               </form>
             </div>
@@ -65,14 +80,14 @@ class Task extends Component {
             {this.props.done
               ? null
               : <React.Fragment>
-
-                <button className={classes.EditBtn} onClick={this.props.onEdit}>Edit</button>
-                <button className={classes.DoneBtn} onClick={this.props.onDone}>Done</button>
+                <button
+                  className={classes.EditBtn}
+                  onClick={() => this.props.toggleEdit(this.key)}>Edit</button>
+                <button className={classes.DoneBtn} onClick={() => this.props.onDone(this.key)}>Done</button>
               </React.Fragment>
 }
           </div>
 }
-
       </div>
     )
   }
