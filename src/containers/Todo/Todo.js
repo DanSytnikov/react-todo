@@ -42,8 +42,6 @@ class Todo extends Component {
 
   state = {
     addNewIsActive: false,
-    title: '',
-    description: '',
     search: '',
     searchRes: [],
     tasks: this.makeTaskList(8)
@@ -72,15 +70,20 @@ class Todo extends Component {
     });
   }
 
-  handleChange = (event) => {
-
-    const name = event.target.name;
-    this.setState({[name]: event.target.value});
-  }
-
   handleSearchChange(searchVal, searchList) {
 
     this.setState({search: searchVal, searchRes: searchList});
+  }
+
+  addTask = (task) => {
+
+    this.setState({
+      tasks: [
+        ...this.state.tasks,
+        task
+      ]
+    });
+    this.toggleCreator();
   }
 
   render() {
@@ -88,18 +91,18 @@ class Todo extends Component {
       <div className={classes.Todo}>
         <Header
           addNewIsActive={this.state.addNewIsActive}
-          titleValue={this.state.title}
-          descriptionValue={this.state.description}
-          toggleCreator={this.toggleCreator}
           onInput={this.handleChange}
+          searchValue={this.state.search}
+          allTasks={this.state.tasks}
+          toggleCreator={this.toggleCreator}
           updateTasks={this
           .updateTasks
           .bind(this)}
           onSearch={this
           .handleSearchChange
           .bind(this)}
-          searchValue={this.state.search}
-          allTasks={this.state.tasks}/>
+          addTask={this.addTask}
+          />
 
         <TaskList
           list={this.state.search === ''

@@ -8,16 +8,16 @@ const Creator = props => (
       <h2>Create Task</h2>
       <input
         className={classes.CreatorTitle}
-        onChange={props.onInput}
-        value={props.titleValue}
+        
+       
         name="title"
         type="text"
         placeholder="Title"
         autoComplete="off"/>
       <textarea
         className={classes.CreatorDescription}
-        onChange={props.onInput}
-        value={props.descriptionValue}
+       
+        
         name="description"
         placeholder="Description"
         autoComplete="off"/>

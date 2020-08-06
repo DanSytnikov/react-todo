@@ -2,7 +2,14 @@ import React from 'react';
 import classes from './Header.module.css'
 import Creator from './Creator/Creator';
 
-const Header = props => {
+const Header = ({
+  addNewIsActive,
+  searchValue,
+  toggleCreator,
+  onSearch,
+  addTask,
+  allTasks
+}) => {
 
   const createTask = (obj) => {
 
@@ -21,44 +28,38 @@ const Header = props => {
     }
   }
 
-  const addTask = (event) => {
-
-    event.preventDefault();
-
-    if (!props.titleValue) 
-      return;
-    
-    const tasks = [
-      ...props.allTasks,
-      createTask({title: props.titleValue, description: props.descriptionValue})
-    ];
-    props.updateTasks(tasks);
-    props.toggleCreator();
-  }
+  const serializeForm = function (form) {
+    var obj = {};
+    var formData = new FormData(form);
+    for (let key of formData.keys()) {
+      obj[key] = formData.get(key);
+    }
+    return obj;
+  };
 
   const handleSearch = (event) => {
-    const searchRes = props
-      .allTasks
+    const searchRes = allTasks
       .filter((taskItem => taskItem.title.toString().toLowerCase().concat(' ', taskItem.description.toString().toLowerCase()).includes(event.target.value.toString().toLowerCase())))
 
-    props.onSearch(event.target.value, searchRes);
+    onSearch(event.target.value, searchRes);
   }
 
   return (
 
     <div className={classes.HeaderBar}>
-      {props.addNewIsActive
+      {addNewIsActive
         ? <Creator
-            toggleCreator={props.toggleCreator}
-            onInput={props.onInput}
-            titleValue={props.titleValue}
-            onSubmit={addTask}/>
+            toggleCreator={toggleCreator}
+            onSubmit={e => {
+            e.preventDefault();
+            addTask(createTask(serializeForm(e.target)));
+          }}/>
         : null}
 
       <button
         className={classes.AddButton}
         onClick={() => {
-        props.toggleCreator()
+        toggleCreator()
       }}>Add new</button>
       <h1>TodoList</h1>
       <div className={classes.SearchWrapper}>
@@ -69,7 +70,7 @@ const Header = props => {
             name="search"
             placeholder="Search.."
             onChange={handleSearch}
-            value={props.searchValue}/>
+            value={searchValue}/>
         </form>
       </div>
     </div>
